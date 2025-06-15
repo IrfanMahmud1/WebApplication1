@@ -1,3 +1,4 @@
+using App.Infrastructure.Data;
 using App.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
