@@ -1,4 +1,5 @@
 using App.Infrastructure.Data;
+using App.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -32,8 +33,10 @@ try
     );
     #endregion
 
-    builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    builder.Services.AddIdentity<IdentityUser, ApplicationRole>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders()
+    .AddDefaultUI();
     builder.Services.AddControllersWithViews();
 
     var app = builder.Build();
